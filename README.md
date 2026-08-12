@@ -10,7 +10,9 @@ E-commerce de tecnología desarrollado con React y Vite.
 
 ## Instalación
 
+```
 git clone https://github.com/EMAGMZ/noroestech.git
 cd noroestech
 npm install
 npm run dev
+```
