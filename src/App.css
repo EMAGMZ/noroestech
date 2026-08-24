@@ -1,0 +1,107 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #0f0f14;
+  color: #ffffff;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Hero */
+.hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 100px 20px 90px;
+  gap: 16px;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(108, 92, 231, 0.25), transparent 60%),
+    linear-gradient(180deg, #14141c 0%, #0f0f14 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px);
+  background-size: 26px 26px;
+  mask-image: radial-gradient(circle at 50% 0%, black, transparent 70%);
+  pointer-events: none;
+}
+
+.tag {
+  background-color: rgba(108, 92, 231, 0.15);
+  border: 1px solid rgba(108, 92, 231, 0.5);
+  color: #b3a4ff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 20px;
+  letter-spacing: 0.5px;
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  font-weight: 800;
+  margin: 0;
+  background: linear-gradient(90deg, #ffffff 0%, #b3a4ff 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -1px;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: #a0a0b0;
+  max-width: 500px;
+}
+
+.cta {
+  margin-top: 12px;
+  background: linear-gradient(90deg, #6c5ce7, #8e7dff);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 12px 32px;
+  border-radius: 999px;
+  box-shadow: 0 8px 24px rgba(108, 92, 231, 0.35);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cta:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(108, 92, 231, 0.5);
+}
+
+/* Products */
+.products-section {
+  padding: 60px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+}
+
+.product-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
