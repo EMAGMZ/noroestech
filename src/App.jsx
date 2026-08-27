@@ -1,7 +1,7 @@
-import Navbar from './components/NavBar'
-import Footer from './components/Footer'
-import ItemListContainer from './components/ItemListContainer'
-import productos from './data/productos'
+import Navbar from './components/NavBar/NavBar'
+import Footer from './components/Footer/Footer'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import { productos } from './data/productos'
 import './App.css'
 
 const tienda = "Noroestech"

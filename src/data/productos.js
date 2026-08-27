@@ -1,11 +1,15 @@
-const productos = [
+import mouseImg from '../assets/mouse.jpeg'
+import tecladoImg from '../assets/teclado.jpg'
+import aurisImg from '../assets/auris.jpg'
+
+export const productos = [
   {
     id: 1,
     nombre: "Mouse Gamer",
     precio: 45000,
     categoria: "Perifericos",
     descripcion: "Mouse gamer 9999 DPI",
-    imagen: "https://placehold.co/300x300"
+    imagen: mouseImg
   },
   {
     id: 2,
@@ -13,7 +17,7 @@ const productos = [
     precio: 62000,
     categoria: "Perifericos",
     descripcion: "Teclado mecánico RGB switch azul",
-    imagen: "https://placehold.co/300x300"
+    imagen: tecladoImg
   },
   {
     id: 3,
@@ -21,8 +25,6 @@ const productos = [
     precio: 38000,
     categoria: "Audio",
     descripcion: "Auriculares con sonido envolvente 7.1",
-    imagen: "https://placehold.co/300x300"
+    imagen: aurisImg
   }
 ]
-
-export default productos
