@@ -1,25 +1,9 @@
-import { useState, useEffect } from 'react'
 import ItemList from '../ItemList/ItemList'
-import { getProducts } from '../../mock/asyncMock'
+import { useProducts } from '../../hooks/useProducts'
+import styles from './ItemListContainer.module.css'
 
 function ItemListContainer({ greeting }) {
-  const [items, setItems] = useState([])
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    const getData = async () => {
-      try {
-        setLoading(true)
-        const data = await getProducts()
-        setItems(data)
-      } catch (err) {
-        console.error("Error cargando productos", err)
-      } finally {
-        setLoading(false)
-      }
-    }
-    getData()
-  }, [])
+  const { products, loading, error } = useProducts()
 
   if (loading) {
     return (
@@ -30,10 +14,19 @@ function ItemListContainer({ greeting }) {
     )
   }
 
+  if (error) {
+    return (
+      <section className="products-section">
+        <h2 className="section-title">{greeting}</h2>
+        <p className={styles.errorMessage}>Error: {error}</p>
+      </section>
+    )
+  }
+
   return (
     <section className="products-section">
       <h2 className="section-title">{greeting}</h2>
-      <ItemList items={items} />
+      <ItemList items={products} />
     </section>
   )
 }
