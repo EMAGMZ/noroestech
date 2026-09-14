@@ -1,0 +1,11 @@
+.itemCount {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.cantidad {
+  min-width: 2rem;
+  text-align: center;
+  font-weight: bold;
+}

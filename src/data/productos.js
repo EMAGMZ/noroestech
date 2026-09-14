@@ -12,7 +12,7 @@ export const productos = [
     category: "Perifericos",
     description: "Mouse gamer 9999 DPI",
     img: mouseImg,
-    stock: 15
+    stock: 10
   },
   {
     id: 2,
@@ -30,7 +30,7 @@ export const productos = [
     category: "Audio",
     description: "Auriculares con sonido envolvente 7.1",
     img: aurisImg,
-    stock: 20
+    stock: 10
   },
   {
     id: 4,
@@ -39,7 +39,7 @@ export const productos = [
     category: "Gabinetes",
     description: "Gabinete con 4 fan incluidos",
     img: gabineteImg,
-    stock: 8
+    stock: 10
   },
   {
     id: 5,
@@ -48,6 +48,6 @@ export const productos = [
     category: "Accesorios",
     description: "Mouse Pad 30x80",
     img: mousePadImg,
-    stock: 25
+    stock: 10
   }
 ]
