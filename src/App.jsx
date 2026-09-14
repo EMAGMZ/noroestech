@@ -1,6 +1,7 @@
 import Navbar from './components/NavBar/NavBar'
 import Footer from './components/Footer/Footer'
 import ItemListContainer from './components/ItemListContainer/ItemListContainer'
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer'
 import { productos } from './data/productos'
 import './App.css'
 
@@ -20,6 +21,10 @@ function App() {
 
       <div id="productos">
         <ItemListContainer productos={productos} greeting="¡Bienvenido a NoroesTech!" />
+      </div>
+
+      <div id="detalle">
+        <ItemDetailContainer />
       </div>
 
       <Footer />
