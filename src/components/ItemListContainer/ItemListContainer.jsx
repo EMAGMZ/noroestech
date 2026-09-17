@@ -1,9 +1,15 @@
+import { useState } from 'react'
 import ItemList from '../ItemList/ItemList'
 import { useProducts } from '../../hooks/useProducts'
 import styles from './ItemListContainer.module.css'
 
 function ItemListContainer({ greeting }) {
   const { products, loading, error } = useProducts()
+  const [busqueda, setBusqueda] = useState('')
+
+  const handleChange = (event) => {
+    setBusqueda(event.target.value)
+  }
 
   if (loading) {
     return (
@@ -23,10 +29,20 @@ function ItemListContainer({ greeting }) {
     )
   }
 
+  const productosFiltrados = products.filter((producto) =>
+    producto.name.toLowerCase().includes(busqueda.toLowerCase())
+  )
+
   return (
     <section className="products-section">
       <h2 className="section-title">{greeting}</h2>
-      <ItemList items={products} />
+      <input
+        type="text"
+        value={busqueda}
+        onChange={handleChange}
+        placeholder="Buscar producto..."
+      />
+      <ItemList items={productosFiltrados} />
     </section>
   )
 }
