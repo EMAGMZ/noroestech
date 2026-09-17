@@ -1,8 +1,10 @@
 import { useState } from 'react'
+import { useCart } from '../../context/CartContext'
 import styles from './ItemCount.module.css'
 
-function ItemCount({ stock }) {
+function ItemCount({ producto, stock }) {
   const [cantidad, setCantidad] = useState(1)
+  const { addToCart } = useCart()
 
   const incrementar = () => {
     if (cantidad < stock) {
@@ -16,11 +18,16 @@ function ItemCount({ stock }) {
     }
   }
 
+  const handleAgregar = () => {
+    addToCart(producto, cantidad)
+  }
+
   return (
     <div className={styles.itemCount}>
       <button onClick={decrementar} disabled={cantidad <= 1}>-</button>
       <span className={styles.cantidad}>{cantidad}</span>
       <button onClick={incrementar} disabled={cantidad >= stock}>+</button>
+      <button onClick={handleAgregar}>Agregar al carrito</button>
     </div>
   )
 }

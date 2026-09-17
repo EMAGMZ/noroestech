@@ -11,7 +11,7 @@ function ItemDetail({ producto }) {
         <p className={styles.price}>${producto.price.toLocaleString('es-AR')}</p>
         <p className={styles.description}>{producto.description}</p>
         <p className={styles.stock}>Stock disponible: {producto.stock}</p>
-        <ItemCount stock={producto.stock} />
+        <ItemCount producto={producto} stock={producto.stock} />
       </div>
     </div>
   )
