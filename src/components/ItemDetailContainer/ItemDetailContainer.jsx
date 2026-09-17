@@ -1,37 +1,40 @@
-import { useEffect, useState } from 'react'
-import { getProductById } from '../../services/getProductById'
-import ItemDetail from '../ItemDetail/ItemDetail'
-import styles from './ItemDetailContainer.module.css'
+import { useState, useEffect } from 'react';
+import { useParams, Link } from 'react-router-dom';
+import { getProductById } from '../../services/getProductById';
+import ItemDetail from '../ItemDetail/ItemDetail';
 
 function ItemDetailContainer() {
-  const [producto, setProducto] = useState(null)
-  const [loading, setLoading] = useState(true)
-  const [error, setError] = useState(null)
+  const { id } = useParams();
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    const fetchProducto = async () => {
-      try {
-        setLoading(true)
-        const data = await getProductById(1) // temporal(aca algun dia voy a poner un url)
-        setProducto(data)
-      } catch (err) {
-        setError(err.message)
-      } finally {
-        setLoading(false)
-      }
-    }
-    fetchProducto()
-  }, [])
+    setLoading(true);
+    setNotFound(false);
 
-  if (loading) {
-    return <p>Cargando producto...</p>
+    getProductById(Number(id))
+      .then((data) => {
+        setProduct(data);
+      })
+      .catch(() => {
+        setNotFound(true);
+      })
+      .finally(() => setLoading(false));
+  }, [id]);
+
+  if (loading) return <p>Cargando producto...</p>;
+
+  if (notFound) {
+    return (
+      <div>
+        <p>El producto que buscás no existe.</p>
+        <Link to="/productos">Volver al catálogo</Link>
+      </div>
+    );
   }
 
-  if (error) {
-    return <p className={styles.errorMessage}>Error: {error}</p>
-  }
-
-  return <ItemDetail producto={producto} />
+  return <ItemDetail producto={product} />;
 }
 
-export default ItemDetailContainer
+export default ItemDetailContainer;
