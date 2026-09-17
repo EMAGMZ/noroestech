@@ -50,3 +50,20 @@
 .logo {
   height: 70px;
 }
+
+.linkNormal {
+  color: #e4e0ff;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.linkNormal:hover {
+  color: #b3a4ff;
+}
+
+.linkActivo {
+  color: #8e7dff;
+  text-decoration: none;
+  font-weight: 700;
+}

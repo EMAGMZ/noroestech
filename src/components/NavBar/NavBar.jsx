@@ -1,18 +1,25 @@
-import styles from './NavBar.module.css'
-import CartWidget from '../CartWidget/CartWidget'
+import { NavLink } from 'react-router-dom';
+import CartWidget from '../CartWidget/CartWidget';
+import styles from './NavBar.module.css';
 
-function Navbar() {
+function NavBar() {
   return (
     <nav className={styles.navbar}>
-      <img className={styles.logo} src="/src/assets/logo_noroestech.png" alt="logo-navbar" />
-      <ul className={styles.navbarLinks}>
-        <li>Perifericos</li>
-        <li>Audio</li>
-        <li>Componentes</li>
-      </ul>
+      <NavLink 
+        to="/" 
+        className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+      >
+        Inicio
+      </NavLink>
+      <NavLink 
+        to="/productos" 
+        className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+      >
+        Productos
+      </NavLink>
       <CartWidget />
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default NavBar;
