@@ -1,10 +1,14 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import logo from '../../assets/logo_noroestech.png';
 import styles from './NavBar.module.css';
 
 function NavBar() {
   return (
     <nav className={styles.navbar}>
+      <Link to="/">
+        <img src={logo} alt="NoroesTech" className={styles.logo} />
+      </Link>
       <NavLink 
         to="/" 
         className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
