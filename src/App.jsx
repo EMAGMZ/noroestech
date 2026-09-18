@@ -17,7 +17,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/productos" element={<ItemListContainer />} />
-            <Route path="/producto/:id" element={<ItemDetailContainer />} />
+            <Route path="/category/:id" element={<ItemListContainer />} />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           <Footer />
