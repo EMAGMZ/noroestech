@@ -1,10 +1,12 @@
 import { useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { useCart } from '../../context/CartContext'
 import styles from './ItemCount.module.css'
 
 function ItemCount({ producto, stock }) {
   const [cantidad, setCantidad] = useState(1)
   const { addToCart } = useCart()
+  const { navigate } = useNavigate()
 
   const incrementar = () => {
     if (cantidad < stock) {
@@ -20,6 +22,7 @@ function ItemCount({ producto, stock }) {
 
   const handleAgregar = () => {
     addToCart(producto, cantidad)
+    navigate ('/productos')
   }
 
   return (
