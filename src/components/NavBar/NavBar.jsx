@@ -17,6 +17,30 @@ function NavBar() {
       >
         Productos
       </NavLink>
+      <NavLink 
+        to="/category/perifericos" 
+        className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+      >
+        Perifericos
+      </NavLink>
+      <NavLink 
+        to="/category/audio" 
+        className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+      >
+        Audio
+      </NavLink>
+      <NavLink 
+        to="/category/gabinetes" 
+        className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+      >
+        Gabinetes
+      </NavLink>
+      <NavLink 
+        to="/category/accesorios" 
+        className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+      >
+        Accesorios
+      </NavLink>
       <CartWidget />
     </nav>
   );
