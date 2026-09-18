@@ -1,9 +1,11 @@
 import { useState } from 'react'
+import { useParams } from 'react-router-dom'
 import ItemList from '../ItemList/ItemList'
 import { useProducts } from '../../hooks/useProducts'
 import styles from './ItemListContainer.module.css'
 
 function ItemListContainer({ greeting }) {
+  const { id: categoryId } = useParams()
   const { products, loading, error } = useProducts()
   const [busqueda, setBusqueda] = useState('')
 
@@ -29,7 +31,13 @@ function ItemListContainer({ greeting }) {
     )
   }
 
-  const productosFiltrados = products.filter((producto) =>
+  const productosPorCategoria = categoryId
+    ? products.filter(
+        (producto) => producto.category.toLowerCase() === categoryId.toLowerCase()
+      )
+    : products
+
+  const productosFiltrados = productosPorCategoria.filter((producto) =>
     producto.name.toLowerCase().includes(busqueda.toLowerCase())
   )
 
