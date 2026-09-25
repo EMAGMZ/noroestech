@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { useParams, Link } from 'react-router-dom';
-import { getProductById } from '../../services/getProductById';
-import ItemDetail from '../ItemDetail/ItemDetail';
+import { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import { getProductById } from "../../services/getProductById";
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 function ItemDetailContainer() {
   const { id } = useParams();
@@ -13,7 +13,7 @@ function ItemDetailContainer() {
     setLoading(true);
     setNotFound(false);
 
-    getProductById(Number(id))
+    getProductById(id)
       .then((data) => {
         setProduct(data);
       })
