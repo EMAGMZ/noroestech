@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
-import { getProducts } from '../mock/asyncMock'
+import { collection, onSnapshot } from 'firebase/firestore'
+import { db } from '../firebase/firebaseConfig'
 
 export const useProducts = () => {
   const [products, setProducts] = useState([])
@@ -7,18 +8,26 @@ export const useProducts = () => {
   const [error, setError] = useState(null)
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        setLoading(true)
-        const data = await getProducts()
-        setProducts(data)
-      } catch (err) {
+    setLoading(true)
+    const productsRef = collection(db, 'products')
+
+    const unsubscribe = onSnapshot(
+      productsRef,
+      (snapshot) => {
+        const items = snapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }))
+        setProducts(items)
+        setLoading(false)
+      },
+      (err) => {
         setError(err.message)
-      } finally {
         setLoading(false)
       }
-    }
-    getData()
+    )
+
+    return () => unsubscribe()
   }, [])
 
   return { products, loading, error }
