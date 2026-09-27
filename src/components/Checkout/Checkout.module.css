@@ -1,0 +1,33 @@
+.checkout {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.error {
+  color: red;
+  font-size: 0.85rem;
+}
+
+.confirmacion {
+  max-width: 500px;
+  margin: 60px auto;
+  text-align: center;
+}
+
+.orderId {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
