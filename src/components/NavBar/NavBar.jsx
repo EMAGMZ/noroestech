@@ -1,9 +1,12 @@
 import { NavLink, Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
+import { useAuth } from '../../context/AuthContext';
 import logo from '../../assets/logo_noroestech.png';
 import styles from './NavBar.module.css';
 
 function NavBar() {
+  const { user, logout } = useAuth();
+
   return (
     <nav className={styles.navbar}>
       <Link to="/">
@@ -45,6 +48,21 @@ function NavBar() {
       >
         Accesorios
       </NavLink>
+
+      {user ? (
+        <div className={styles.userInfo}>
+          <span>{user.email}</span>
+          <button onClick={logout}>Cerrar sesión</button>
+        </div>
+      ) : (
+        <NavLink 
+          to="/login" 
+          className={({ isActive }) => isActive ? styles.linkActivo : styles.linkNormal}
+        >
+          Iniciar sesión
+        </NavLink>
+      )}
+
       <CartWidget />
     </nav>
   );
