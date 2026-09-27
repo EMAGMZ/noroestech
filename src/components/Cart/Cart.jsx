@@ -1,9 +1,9 @@
-import { Link } from 'react-router-dom'
-import { useCart } from '../../context/CartContext'
-import styles from './Cart.module.css'
+import { Link } from "react-router-dom";
+import { useCart } from "../../context/CartContext";
+import styles from "./Cart.module.css";
 
 function Cart() {
-  const { cart, removeItem, clear, totalPrice } = useCart()
+  const { cart, removeItem, clear, totalPrice } = useCart();
 
   if (cart.length === 0) {
     return (
@@ -14,7 +14,7 @@ function Cart() {
           Ver catálogo
         </Link>
       </div>
-    )
+    );
   }
 
   return (
@@ -28,10 +28,16 @@ function Cart() {
             <div className={styles.itemInfo}>
               <h3>{item.name}</h3>
               <p>Cantidad: {item.cantidad}</p>
-              <p>Precio unitario: ${item.price.toLocaleString('es-AR')}</p>
-              <p>Subtotal: ${(item.price * item.cantidad).toLocaleString('es-AR')}</p>
+              <p>Precio unitario: ${item.price.toLocaleString("es-AR")}</p>
+              <p>
+                Subtotal: $
+                {(item.price * item.cantidad).toLocaleString("es-AR")}
+              </p>
             </div>
-            <button onClick={() => removeItem(item.id)} className={styles.removeBtn}>
+            <button
+              onClick={() => removeItem(item.id)}
+              className={styles.removeBtn}
+            >
               Eliminar
             </button>
           </div>
@@ -39,16 +45,16 @@ function Cart() {
       </div>
 
       <div className={styles.resumen}>
-        <h3>Total: ${totalPrice.toLocaleString('es-AR')}</h3>
+        <h3>Total: ${totalPrice.toLocaleString("es-AR")}</h3>
         <button onClick={clear} className={styles.clearBtn}>
           Vaciar carrito
         </button>
-        <button className={styles.checkoutBtn}>
+        <Link to="/checkout" className={styles.checkoutBtn}>
           Finalizar compra
-        </button>
+        </Link>
       </div>
     </div>
-  )
+  );
 }
 
-export default Cart
+export default Cart;
