@@ -6,7 +6,7 @@ import styles from './ItemListContainer.module.css'
 
 function ItemListContainer({ greeting }) {
   const { id: categoryId } = useParams()
-  const { products, loading, error } = useProducts()
+  const { products, loading, error } = useProducts(categoryId)
   const [busqueda, setBusqueda] = useState('')
 
   const handleChange = (event) => {
@@ -31,13 +31,7 @@ function ItemListContainer({ greeting }) {
     )
   }
 
-  const productosPorCategoria = categoryId
-    ? products.filter(
-        (producto) => producto.category.toLowerCase() === categoryId.toLowerCase()
-      )
-    : products
-
-  const productosFiltrados = productosPorCategoria.filter((producto) =>
+  const productosFiltrados = products.filter((producto) =>
     producto.name.toLowerCase().includes(busqueda.toLowerCase())
   )
 

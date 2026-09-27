@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react'
-import { collection, onSnapshot } from 'firebase/firestore'
+import { collection, onSnapshot, query, where } from 'firebase/firestore'
 import { db } from '../firebase/firebaseConfig'
 
-export const useProducts = () => {
+export const useProducts = (categoryId) => {
   const [products, setProducts] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
@@ -11,8 +11,12 @@ export const useProducts = () => {
     setLoading(true)
     const productsRef = collection(db, 'products')
 
+    const q = categoryId
+      ? query(productsRef, where('category', '==', categoryId))
+      : productsRef
+
     const unsubscribe = onSnapshot(
-      productsRef,
+      q,
       (snapshot) => {
         const items = snapshot.docs.map((doc) => ({
           id: doc.id,
@@ -28,7 +32,7 @@ export const useProducts = () => {
     )
 
     return () => unsubscribe()
-  }, [])
+  }, [categoryId])
 
   return { products, loading, error }
 }
