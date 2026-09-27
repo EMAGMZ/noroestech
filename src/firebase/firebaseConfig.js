@@ -3,12 +3,12 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyA8EyjvOOZb67mUvGt7SVUj990PLf8qN6U",
-  authDomain: "noroestech-ecommerce.firebaseapp.com",
-  projectId: "noroestech-ecommerce",
-  storageBucket: "noroestech-ecommerce.firebasestorage.app",
-  messagingSenderId: "575830946820",
-  appId: "1:575830946820:web:0c4d7ed371800a1da1b151",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
 };
 
 const app = initializeApp(firebaseConfig);
