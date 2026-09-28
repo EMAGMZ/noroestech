@@ -1,17 +1,13 @@
-import { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import ItemList from '../ItemList/ItemList'
 import { useProducts } from '../../hooks/useProducts'
+import { useSearch } from '../../context/SearchContext'
 import styles from './ItemListContainer.module.css'
 
 function ItemListContainer({ greeting }) {
   const { id: categoryId } = useParams()
   const { products, loading, error } = useProducts(categoryId)
-  const [busqueda, setBusqueda] = useState('')
-
-  const handleChange = (event) => {
-    setBusqueda(event.target.value)
-  }
+  const { busqueda } = useSearch()
 
   if (loading) {
     return (
@@ -38,12 +34,6 @@ function ItemListContainer({ greeting }) {
   return (
     <section className="products-section">
       <h2 className="section-title">{greeting}</h2>
-      <input
-        type="text"
-        value={busqueda}
-        onChange={handleChange}
-        placeholder="Buscar producto..."
-      />
       <ItemList items={productosFiltrados} />
     </section>
   )
