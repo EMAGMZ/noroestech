@@ -1,9 +1,9 @@
 import ProductCard from '../ProductCard/ProductCard'
-import styles from './ItemList.module.css' // AGREGADO
+import styles from './ItemList.module.css'
 
 function ItemList({ items }) {
   return (
-    <div className={styles.productList}> {/* REEMPLAZADO */}
+    <div className={styles.productList}>
       {items.map((producto) => (
         <ProductCard key={producto.id} producto={producto} />
       ))}

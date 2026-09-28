@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink, Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import { useAuth } from '../../context/AuthContext';
-import { useSearch } from '../../context/SearchContext'; // AGREGADO
+import { useSearch } from '../../context/SearchContext';
 import logo from '../../assets/logo_noroestech.png';
 import styles from './NavBar.module.css';
 
@@ -15,7 +15,7 @@ const categorias = [
 
 function NavBar() {
   const { user, logout } = useAuth();
-  const { busqueda, setBusqueda } = useSearch(); // AGREGADO
+  const { busqueda, setBusqueda } = useSearch();
   const [menuAbierto, setMenuAbierto] = useState(false);
 
   const toggleMenu = () => setMenuAbierto(!menuAbierto);
@@ -26,7 +26,6 @@ function NavBar() {
     logout();
   };
 
-  // AGREGADO: mismo handleChange que tenías en ItemListContainer
   const handleChange = (event) => {
     setBusqueda(event.target.value);
   };

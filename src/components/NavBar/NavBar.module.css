@@ -7,15 +7,12 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 10px 16px; /* REEMPLAZADO: 40px -> 16px en mobile (40px pasa a la media query) */
+  padding: 10px 16px;
   background-color: rgba(26, 26, 36, 0.85);
   backdrop-filter: blur(8px);
   border-bottom: 1px solid rgba(108, 92, 231, 0.2);
 }
 
-/* ELIMINADO: .navbarLinks y sus variantes (no se usaban en el JSX) */
-
-/* AGREGADO: botón hamburguesa */
 .hamburguesa {
   position: relative;
   z-index: 2; /* queda por encima del panel para poder cerrarlo */
@@ -28,10 +25,9 @@
 }
 
 .logo {
-  height: 45px; /* REEMPLAZADO: 60px -> 45px en mobile (60px pasa a la media query) */
+  height: 45px;
 }
 
-/* AGREGADO: panel lateral, escondido a la izquierda */
 .menu {
   position: fixed;
   top: 0;
@@ -49,7 +45,6 @@
   transition: transform 0.3s ease;
 }
 
-/* AGREGADO: cuando está abierto, vuelve a su lugar */
 .menuAbierto {
   transform: translateX(0);
 }
@@ -73,12 +68,12 @@
 
 .userInfo {
   display: flex;
-  flex-direction: column; /* AGREGADO: en el panel, email arriba y botón abajo */
-  align-items: flex-start; /* REEMPLAZADO: center -> flex-start */
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
-  margin-top: 12px; /* AGREGADO */
-  padding-top: 16px; /* AGREGADO */
-  border-top: 1px solid rgba(108, 92, 231, 0.2); /* AGREGADO: separa usuario de categorías */
+  margin-top: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(108, 92, 231, 0.2);
   color: white;
   font-size: 0.9rem;
 }
@@ -90,7 +85,6 @@
   border: none;
 }
 
-/* ===== AGREGADO: PC (768px o más) ===== */
 @media (min-width: 768px) {
   .navbar {
     padding: 10px 40px;
