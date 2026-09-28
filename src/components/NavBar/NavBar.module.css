@@ -126,4 +126,28 @@
     padding-top: 0;
     border-top: none;
   }
+
+    .buscador {
+    width: 180px;
+  }
+}
+
+.buscador {
+  width: 100%;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(108, 92, 231, 0.3);
+  background-color: #1e1e2e;
+  color: #e4e0ff;
+  font-size: 0.9rem;
+  outline: none;
+  transition: border-color 0.2s ease;
+}
+
+.buscador::placeholder {
+  color: #a0a0b0;
+}
+
+.buscador:focus {
+  border-color: #8e7dff;
 }
