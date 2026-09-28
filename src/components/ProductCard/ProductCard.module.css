@@ -16,7 +16,7 @@
 }
 
 .card img {
-  width: 60%;
+  width: 80%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
   border-radius: 8px;
@@ -26,7 +26,7 @@
 .card h3 {
   font-size: 1.05rem;
   margin-bottom: 6px;
-   color: #ffffff;
+   color: #b3a4ff;
 }
 
 .card p {
