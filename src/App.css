@@ -1,16 +1,7 @@
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
 .App {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #0f0f14;
-  color: #ffffff;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 /* Hero */
@@ -105,4 +96,3 @@
   grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   gap: 24px;
 }
-
