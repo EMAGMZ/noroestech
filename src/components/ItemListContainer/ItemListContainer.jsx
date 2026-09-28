@@ -4,7 +4,7 @@ import { useProducts } from '../../hooks/useProducts'
 import { useSearch } from '../../context/SearchContext'
 import styles from './ItemListContainer.module.css'
 
-function ItemListContainer({ greeting }) {
+function ItemListContainer() { // REEMPLAZADO
   const { id: categoryId } = useParams()
   const { products, loading, error } = useProducts(categoryId)
   const { busqueda } = useSearch()
@@ -12,7 +12,7 @@ function ItemListContainer({ greeting }) {
   if (loading) {
     return (
       <section className={styles.productsSection}> {/* REEMPLAZADO */}
-        <h2 className={styles.sectionTitle}>{greeting}</h2> {/* REEMPLAZADO */}
+        {/* ELIMINADO: h2 de título */}
         <p>Cargando productos. Espere 2 segundos</p>
       </section>
     )
@@ -21,7 +21,7 @@ function ItemListContainer({ greeting }) {
   if (error) {
     return (
       <section className={styles.productsSection}> {/* REEMPLAZADO */}
-        <h2 className={styles.sectionTitle}>{greeting}</h2> {/* REEMPLAZADO */}
+        {/* ELIMINADO: h2 de título */}
         <p className={styles.errorMessage}>Error: {error}</p>
       </section>
     )
@@ -33,7 +33,7 @@ function ItemListContainer({ greeting }) {
 
   return (
     <section className={styles.productsSection}> {/* REEMPLAZADO */}
-      <h2 className={styles.sectionTitle}>{greeting}</h2> {/* REEMPLAZADO */}
+      {/* ELIMINADO: h2 de título */}
       <ItemList items={productosFiltrados} />
     </section>
   )

@@ -32,11 +32,3 @@
   max-width: 1200px;
   margin: 0 auto;
 }
-
-/* AGREGADO: movido desde App.css */
-.sectionTitle {
-  text-align: center;
-  font-size: 2rem;
-  font-weight: 800;
-  margin-bottom: 40px;
-}
