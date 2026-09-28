@@ -1,51 +1,54 @@
 # NoroesTech
 
-E-commerce de tecnología desarrollado con React y Vite.
+E-commerce de tecnología gamer desarrollado con React, Vite y Firebase (Firestore + Authentication).
 
 ## Tecnologías
 
 - React 19
 - Vite
 - JavaScript
-- React Router DOM  <!-- AGREGADO -->
+- React Router DOM
+- Firebase (Firestore + Authentication)
 
 ## Componentes
 
-- **Navbar**: barra de navegación superior con el logo de la tienda (clickeable, lleva al inicio), links a Inicio, Productos, categorías de productos (Perifericos, Audio, Gabinetes, Accesorios) y el `CartWidget` como componente hijo. Se mantiene visible en todas las rutas de la aplicación. <!-- AGREGADO: logo y visibilidad en todas las rutas; CORREGIDO: categorías reales -->
-- **CartWidget**: ícono de carrito con un badge que indica la cantidad de productos agregados.
-- **ItemListContainer**: recibe por props un mensaje de bienvenida (`greeting`). Se encarga de pedir los productos (usando el hook `useProducts`) y muestra un mensaje de carga mientras espera la respuesta. Filtra los productos por categoría leyendo el parámetro de la URL con `useParams` (ruta `/category/:id`), y además incluye un buscador por nombre con un input controlado. No arma la lista visual directamente, eso lo delega a `ItemList`. <!-- CORREGIDO: useProducts en vez de useEffect/useState directo; AGREGADO: categoría y buscador -->
-- **ItemList**: recibe la lista de productos por props y recorre el array con `.map()`, renderizando una `ProductCard` por cada producto.
-- **ProductCard**: tarjeta individual de producto, recibe un `producto` por props y muestra su imagen, nombre, descripción, precio y stock. Al hacer click navega al detalle del producto (`/item/:id`). <!-- AGREGADO -->
-- **ItemDetailContainer**: lee el `id` del producto desde la URL con `useParams`, busca sus datos y maneja el caso de producto no encontrado, mostrando un mensaje con link de vuelta al catálogo. <!-- AGREGADO -->
-- **ItemDetail** / **ItemCount**: muestran el detalle completo del producto y permiten elegir cantidad y agregarlo al carrito (conectado a `CartContext`). Tras agregar, redirige automáticamente al catálogo con `useNavigate`. <!-- AGREGADO -->
-- **NotFound**: página que se muestra ante cualquier URL que no coincide con ninguna ruta definida. <!-- AGREGADO -->
-- **Footer**: pie de página con la información de derechos de la tienda.
+- **NavBar**: navegación superior con logo, links a categorías, `CartWidget`, y estado de sesión (email + logout si hay usuario logueado, link a login si no).
+- **CartWidget**: ícono de carrito con badge de cantidad.
+- **ItemListContainer**: obtiene productos desde Firestore con el hook `useProducts`, filtrando por categoría en el servidor (`query`/`where`) según el parámetro de la URL. Incluye buscador por nombre.
+- **ItemList** / **ProductCard**: arman la grilla y la tarjeta de cada producto.
+- **ItemDetailContainer** / **ItemDetail** / **ItemCount**: detalle de un producto obtenido por ID desde Firestore, con selector de cantidad para agregar al carrito.
+- **Login**: registro e inicio de sesión con Firebase Authentication.
+- **Cart**: vista del carrito, con opción de eliminar ítems, vaciarlo o pasar a checkout.
+- **Checkout**: ruta protegida. Formulario de datos de entrega, generación de la orden en Firestore, y confirmación con el ID generado.
+- **ProtectedRoute**: redirige a `/login` si no hay usuario autenticado.
+- **NotFound** / **Footer**.
 
-## Navegación (React Router) <!-- SECCIÓN NUEVA -->
-
-La aplicación usa `react-router-dom` para navegar sin recargar la página. Rutas definidas:
+## Navegación (React Router)
 
 | Ruta | Componente | Descripción |
 |---|---|---|
 | `/` | Home | Página de inicio |
 | `/productos` | ItemListContainer | Catálogo completo |
 | `/category/:id` | ItemListContainer | Catálogo filtrado por categoría |
-| `/item/:id` | ItemDetailContainer | Detalle de un producto puntual |
+| `/item/:id` | ItemDetailContainer | Detalle de un producto |
+| `/login` | Login | Registro / inicio de sesión |
+| `/cart` | Cart | Carrito de compras |
+| `/checkout` | Checkout (protegida) | Datos de entrega y confirmación |
 | `*` | NotFound | Cualquier URL no definida |
 
-El filtro por categoría se resuelve leyendo el parámetro `:id` de la URL con `useParams`: si existe, se filtran los productos por ese campo; si no (por ejemplo en `/productos`), se muestran todos.
+## Carrito de compras
 
-## Carga de productos (simulación asíncrona)
+Manejado con Context API (`CartContext`), accesible con el hook `useCart`. Expone `cart`, `totalItems`, `totalPrice` y las funciones para agregar, quitar y vaciar productos.
 
-Los productos no se muestran de forma instantánea: `ItemListContainer` usa el hook `useProducts` (que por dentro usa `useEffect`/`useState`) para pedirlos apenas se monta el componente, y mientras tanto muestra "Cargando productos...". <!-- CORREGIDO -->
+## Firebase
 
-La función `getProducts`, ubicada en `src/mock/asyncMock.js`, simula una llamada a una API real: devuelve una `Promise` que se resuelve después de 2 segundos con el array de productos (definido en `src/data/productos.js`). Esto imita el tiempo de espera de una petición de red real, aunque los datos por ahora sean locales.
+La conexión se centraliza en `src/firebase/firebaseConfig.js`, que exporta `db` (Firestore) y `auth` (Authentication). Las credenciales se leen desde variables de entorno (ver `.env.example`), nunca están escritas en el código.
 
-Este mock será reemplazado más adelante por una conexión real a una base de datos (Firebase), sin necesidad de cambiar la lógica de `useEffect`/`useState` que ya está preparada para manejar datos que tardan en llegar.
+Colecciones:
+- **`products`**: catálogo, con `name`, `description`, `price`, `category`, `stock`, `img`.
+- **`orders`**: órdenes de compra, con datos del comprador, usuario autenticado, productos, total y fecha (`serverTimestamp`).
 
-## Carrito de compras <!-- SECCIÓN NUEVA -->
-
-El estado del carrito se maneja con Context API (`CartContext`, en `src/context/CartContext.jsx`), accesible desde cualquier componente con el hook `useCart`. Expone la lista de productos agregados (`cart`), el total de items (`totalItems`, mostrado en el badge del `CartWidget`) y la función `addToCart` para agregar productos.
+Las reglas de seguridad de Firestore permiten lectura pública de `products` pero solo admiten escritura desde el cliente para el propio cliente (bloqueada), y en `orders` solo permiten crear documentos si hay un usuario autenticado.
 
 ## Instalación
 
@@ -53,5 +56,10 @@ El estado del carrito se maneja con Context API (`CartContext`, en `src/context/
 git clone https://github.com/EMAGMZ/noroestech.git
 cd noroestech
 npm install
+\`\`\`
+
+Creá un archivo `.env` en la raíz con las variables de `.env.example`, usando las credenciales de tu propio proyecto de Firebase.
+
+\`\`\`
 npm run dev
 \`\`\`
