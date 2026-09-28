@@ -24,3 +24,19 @@
   outline: none;
   border-color: #6c5ce7;
 }
+
+/* AGREGADO: movido desde App.css */
+.productsSection {
+  width: 100%;
+  padding: 60px 20px 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* AGREGADO: movido desde App.css */
+.sectionTitle {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 40px;
+}

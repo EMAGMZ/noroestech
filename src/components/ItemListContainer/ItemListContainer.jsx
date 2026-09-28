@@ -11,8 +11,8 @@ function ItemListContainer({ greeting }) {
 
   if (loading) {
     return (
-      <section className="products-section">
-        <h2 className="section-title">{greeting}</h2>
+      <section className={styles.productsSection}> {/* REEMPLAZADO */}
+        <h2 className={styles.sectionTitle}>{greeting}</h2> {/* REEMPLAZADO */}
         <p>Cargando productos. Espere 2 segundos</p>
       </section>
     )
@@ -20,8 +20,8 @@ function ItemListContainer({ greeting }) {
 
   if (error) {
     return (
-      <section className="products-section">
-        <h2 className="section-title">{greeting}</h2>
+      <section className={styles.productsSection}> {/* REEMPLAZADO */}
+        <h2 className={styles.sectionTitle}>{greeting}</h2> {/* REEMPLAZADO */}
         <p className={styles.errorMessage}>Error: {error}</p>
       </section>
     )
@@ -32,8 +32,8 @@ function ItemListContainer({ greeting }) {
   )
 
   return (
-    <section className="products-section">
-      <h2 className="section-title">{greeting}</h2>
+    <section className={styles.productsSection}> {/* REEMPLAZADO */}
+      <h2 className={styles.sectionTitle}>{greeting}</h2> {/* REEMPLAZADO */}
       <ItemList items={productosFiltrados} />
     </section>
   )
