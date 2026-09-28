@@ -28,14 +28,12 @@ export function CartProvider({ children }) {
     setCart([]);
   };
 
-  const isInCart = (id) => cart.some((item) => item.id === id);
-
   const totalItems = cart.reduce((acc, item) => acc + item.cantidad, 0);
 
   const totalPrice = cart.reduce((acc, item) => acc + item.price * item.cantidad, 0)
 
   return (
-    <CartContext.Provider value={{ cart, addToCart, removeItem, clear, isInCart, totalItems, totalPrice }}>
+    <CartContext.Provider value={{ cart, addToCart, removeItem, clear, totalItems, totalPrice }}>
       {children}
     </CartContext.Provider>
   );
