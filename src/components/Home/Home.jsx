@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 import ItemList from '../ItemList/ItemList';
 import { useProducts } from '../../hooks/useProducts';
-import { categorias } from '../../data/categorias';
 import styles from './Home.module.css';
 
 function Home() {
