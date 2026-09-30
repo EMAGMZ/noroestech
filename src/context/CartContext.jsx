@@ -12,11 +12,11 @@ export function CartProvider({ children }) {
       if (existe) {
         return prev.map((item) =>
           item.id === producto.id
-            ? { ...item, cantidad: item.cantidad + cantidad }
+            ? { ...item, cantidad: Math.min(item.cantidad + cantidad, producto.stock) }
             : item,
         );
       }
-      return [...prev, { ...producto, cantidad }];
+      return [...prev, { ...producto, cantidad: Math.min(cantidad, producto.stock) }];
     });
   };
 
