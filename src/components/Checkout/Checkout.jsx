@@ -4,10 +4,11 @@ import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../../firebase/firebaseConfig'
 import { useAuth } from '../../context/AuthContext'
 import { useCart } from '../../context/CartContext'
+import Login from '../Login/Login'
 import styles from './Checkout.module.css'
 
 function Checkout() {
-  const { user } = useAuth()
+  const { user, loading: authLoading } = useAuth()
   const { cart, totalPrice, clear } = useCart()
   const navigate = useNavigate()
 
@@ -22,6 +23,10 @@ function Checkout() {
   const [loading, setLoading] = useState(false)
   const [orderId, setOrderId] = useState(null)
   const [submitError, setSubmitError] = useState('')
+
+  if (authLoading) {
+    return <p className={styles.checkout}>Verificando sesión...</p>
+  }
 
   if (cart.length === 0 && !orderId) {
     return <Navigate to="/productos" replace />
@@ -93,9 +98,20 @@ function Checkout() {
     )
   }
 
+  if (!user) {
+    return (
+      <div className={styles.checkout}>
+        <h1>Finalizar compra</h1>
+        <p>Iniciá sesión o registrate para continuar. Tus productos siguen en el carrito.</p>
+        <Login />
+      </div>
+    )
+  }
+
   return (
     <div className={styles.checkout}>
       <h1>Finalizar compra</h1>
+      <p>Comprando como {user.email}</p> {/* AGREGADO */}
       <p>Total a pagar: ${totalPrice.toLocaleString('es-AR')}</p>
 
       <form onSubmit={handleSubmit} className={styles.form}>
