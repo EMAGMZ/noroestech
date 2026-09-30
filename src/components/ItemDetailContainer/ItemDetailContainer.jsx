@@ -10,17 +10,21 @@ function ItemDetailContainer() {
   const [notFound, setNotFound] = useState(false);
 
   useEffect(() => {
-    setLoading(true);
-    setNotFound(false);
+    const fetchProduct = async () => {
+      setLoading(true);
+      setNotFound(false);
 
-    getProductById(id)
-      .then((data) => {
+      try {
+        const data = await getProductById(id);
         setProduct(data);
-      })
-      .catch(() => {
+      } catch {
         setNotFound(true);
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProduct();
   }, [id]);
 
   if (loading) return <p>Cargando producto...</p>;
