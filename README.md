@@ -42,6 +42,10 @@ Manejado con Context API (`CartContext`), accesible con el hook `useCart`. Expon
 
 ## Firebase
 
+### Imágenes de productos
+
+El campo `img` de cada producto guarda la URL pública de la imagen original del proveedor (maximus.com.ar o compragamer); las imágenes no están alojadas en este proyecto. Se eligió así por tratarse de un trabajo práctico, para no configurar Firebase Storage. Las limitaciones son conocidas: si el proveedor cambia, mueve o elimina una imagen, o bloquea el uso desde otros dominios, esa imagen dejaría de verse en la tienda. En un proyecto real, las imágenes se subirían a Firebase Storage (u otro servicio propio) y `img` apuntaría a esa copia.
+
 La conexión se centraliza en `src/firebase/firebaseConfig.js`, que exporta `db` (Firestore) y `auth` (Authentication). Las credenciales se leen desde variables de entorno (ver `.env.example`), nunca están escritas en el código.
 
 Colecciones:
