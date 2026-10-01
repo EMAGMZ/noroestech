@@ -1,11 +1,55 @@
 .itemCount {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.itemCount button {
+  cursor: pointer;
+  min-width: 44px;
+  height: 44px;
+  border-radius: 8px;
+  border: 1px solid rgba(108, 92, 231, 0.4);
+  background-color: #1e1e2e;
+  color: #e4e0ff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.itemCount button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.itemCount button:last-child {
+  flex-basis: 100%;
+  border: none;
+  background-color: #6c5ce7;
+  color: #ffffff;
+  font-size: 1rem;
+}
+
+.itemCount button:last-child:hover {
+  background-color: #8e7dff;
 }
 
 .cantidad {
   min-width: 2rem;
   text-align: center;
   font-weight: bold;
+  font-size: 1.1rem;
+}
+
+@media (min-width: 768px) {
+  .itemCount {
+    flex-wrap: nowrap;
+  }
+
+  .itemCount button:last-child {
+    flex-basis: auto;
+    padding: 0 1.5rem;
+    margin-left: 0.5rem;
+  }
 }
