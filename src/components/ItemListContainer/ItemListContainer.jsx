@@ -12,7 +12,7 @@ function ItemListContainer() {
   if (loading) {
     return (
       <section className={styles.productsSection}>
-        <p>Cargando productos. Espere 2 segundos</p>
+        <p>Cargando productos...</p>
       </section>
     )
   }
@@ -28,6 +28,18 @@ function ItemListContainer() {
   const productosFiltrados = products.filter((producto) =>
     producto.name.toLowerCase().includes(busqueda.toLowerCase())
   )
+
+  if (productosFiltrados.length === 0) {
+    return (
+      <section className={styles.productsSection}>
+        <p>
+          {busqueda
+            ? `No hay productos que coincidan con "${busqueda}".`
+            : 'No hay productos en esta categoría por el momento.'}
+        </p>
+      </section>
+    )
+  }
 
   return (
     <section className={styles.productsSection}>
