@@ -1,33 +1,23 @@
+.productsSection {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
 .errorMessage {
   color: #d32f2f;
   font-weight: bold;
 }
 
-.searchInput {
-  display: block;
-  width: 100%;
-  max-width: 20rem;
-  margin: 0 auto 20px;
-  padding: 10px 14px;
-  background-color: #1e1e2e;
-  border: 1px solid rgba(108, 92, 231, 0.4);
-  border-radius: 8px;
-  color: #fcfcfc;
-  font-size: 0.95rem;
+@media (min-width: 768px) {
+  .productsSection {
+    padding: 40px 24px 64px;
+  }
 }
 
-.searchInput::placeholder {
-  color: #a0a0b0;
-}
-
-.searchInput:focus {
-  outline: none;
-  border-color: #6c5ce7;
-}
-
-.productsSection {
-  width: 100%;
-  padding: 60px 20px 80px;
-  max-width: 1200px;
-  margin: 0 auto;
+@media (min-width: 1024px) {
+  .productsSection {
+    padding: 60px 40px 80px;
+  }
 }
