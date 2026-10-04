@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Navigate, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { collection, addDoc, serverTimestamp } from 'firebase/firestore'
 import { db } from '../../firebase/firebaseConfig'
 import { useAuth } from '../../context/AuthContext'
@@ -29,7 +29,13 @@ function Checkout() {
   }
 
   if (cart.length === 0 && !orderId) {
-    return <Navigate to="/productos" replace />
+    return (
+      <div className={styles.confirmacion}>
+        <h2>Tu carrito está vacío</h2>
+        <p>Agregá productos para poder finalizar una compra.</p>
+        <button onClick={() => navigate('/productos')}>Ver catálogo</button>
+      </div>
+    )
   }
 
   const handleChange = (e) => {
@@ -111,7 +117,7 @@ function Checkout() {
   return (
     <div className={styles.checkout}>
       <h1>Finalizar compra</h1>
-      <p>Comprando como {user.email}</p> {/* AGREGADO */}
+      <p>Comprando como {user.email}</p>
       <p>Total a pagar: ${totalPrice.toLocaleString('es-AR')}</p>
 
       <form onSubmit={handleSubmit} className={styles.form}>
