@@ -3,7 +3,7 @@ import { NavLink, Link } from 'react-router-dom';
 import CartWidget from '../CartWidget/CartWidget';
 import { useAuth } from '../../context/AuthContext';
 import { useSearch } from '../../context/SearchContext';
-import logo from '../../assets/logo_noroestech.png';
+import logo from '../../assets/logoNavbar.png';
 import styles from './NavBar.module.css';
 
 const categorias = [
