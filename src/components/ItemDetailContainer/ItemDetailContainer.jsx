@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import { getProductById } from "../../services/getProductById";
 import ItemDetail from "../ItemDetail/ItemDetail";
+import styles from "./ItemDetailContainer.module.css";
 
 function ItemDetailContainer() {
   const { id } = useParams();
@@ -27,13 +28,15 @@ function ItemDetailContainer() {
     fetchProduct();
   }, [id]);
 
-  if (loading) return <p>Cargando producto...</p>;
+  if (loading) return <p className={styles.mensaje}>Cargando producto...</p>;
 
   if (notFound) {
     return (
-      <div>
+      <div className={styles.mensaje}>
         <p>El producto que buscás no existe.</p>
-        <Link to="/productos">Volver al catálogo</Link>
+        <Link to="/productos" className={styles.boton}>
+          Volver al catálogo
+        </Link>
       </div>
     );
   }
