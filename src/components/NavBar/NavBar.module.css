@@ -111,19 +111,23 @@
   background-color: rgba(108, 92, 231, 0.25);
 }
 
-/* ===== TABLET Y DESKTOP ===== */
+/* ===== TABLET ===== */
 
 @media (min-width: 768px) {
   .navbar {
-    padding: 10px 40px;
-  }
-
-  .hamburguesa {
-    display: none;
+    padding: 10px 24px;
   }
 
   .logo {
-    height: 60px;
+    height: 52px;
+  }
+}
+
+/* ===== DESKTOP ===== */
+
+@media (min-width: 1280px) {
+  .hamburguesa {
+    display: none;
   }
 
   .menu {
@@ -132,7 +136,7 @@
     height: auto;
     flex-direction: row;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
     padding: 0;
     background-color: transparent;
     border-right: none;
@@ -141,7 +145,13 @@
   }
 
   .buscador {
-    width: 180px;
+    width: 160px;
+  }
+
+  .linkNormal,
+  .linkActivo {
+    font-size: 0.95rem;
+    white-space: nowrap;
   }
 
   .userInfo {
@@ -150,5 +160,6 @@
     margin-top: 0;
     padding-top: 0;
     border-top: none;
+    white-space: nowrap;
   }
 }
